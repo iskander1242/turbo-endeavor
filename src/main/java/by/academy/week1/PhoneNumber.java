@@ -18,7 +18,7 @@ public class PhoneNumber {
             phoneNumbers.stream().forEach(n -> sb.append(n));
             phone = sb.toString().replaceFirst(PHONE_REGEX, REPLACEMENT);
         } else {
-            System.out.println("Check phone number list is failed");
+            throw new IllegalArgumentException();
         }
         return phone;
     }
