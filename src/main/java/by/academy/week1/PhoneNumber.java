@@ -7,32 +7,35 @@ import java.util.List;
  */
 public class PhoneNumber {
 
-    public static String getPhoneNumberFirst(List<Integer> phoneNumbers) {
+    private final String REPLACEMENT = "($1)$2-$3";
+    private final int SIZE_STRING_PHONE_NUMBER = 10;
+    private final String PHONE_REGEX = "(\\d{3})(\\d{3})(\\d{4})";
+
+    public String getPhoneNumberFirst(List<Integer> phoneNumbers) {
         StringBuilder sb = new StringBuilder();
         String phone = null;
         if (checkPhone(phoneNumbers)) {
             phoneNumbers.stream().forEach(n -> sb.append(n));
-            phone = sb.toString();
-            phone = phone.replaceFirst("(\\d{3})(\\d{3})(\\d{4})", "($1)$2-$3");
+            phone = sb.toString().replaceFirst(PHONE_REGEX, REPLACEMENT);
         } else {
             System.out.println("Check phone number list is failed");
         }
         return phone;
     }
 
-    public static String getPhoneNumberSecond(List<Integer> numbers) {
+    public String getPhoneNumberSecond(List<Integer> numbers) {
         StringBuilder sb = new StringBuilder();
         if (checkPhone(numbers)) {
             numbers.stream().forEach(n -> sb.append(n));
             sb.insert(0, "(").insert(4, ")").insert(8, "-");
         } else {
-            System.out.println("Check phone number list is failed");
+            throw new IllegalArgumentException();
         }
         return sb.toString();
     }
 
 
-    private static boolean checkPhone(List<Integer> phoneNumber) {
-        return !phoneNumber.isEmpty() && (phoneNumber.size() == 10);
+    private boolean checkPhone(List<Integer> phoneNumber) {
+        return !phoneNumber.isEmpty() && (phoneNumber.size() == SIZE_STRING_PHONE_NUMBER);
     }
 }
