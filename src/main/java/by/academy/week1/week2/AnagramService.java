@@ -42,15 +42,18 @@ import static java.util.stream.Collectors.toList;
  */
 public class AnagramService {
 
-    private static Function<String, String> condition = e -> {
+    private static Function<String, String> anagramCondition = e -> {
         char[] k = e.toCharArray();
         Arrays.sort(k);
         return String.valueOf(k);
     };
 
     public String[][] getAnagrams(String[] data) {
-        return Arrays.asList(data).stream().collect(sortedGroupingBy(condition))
-                .values().stream().map(e -> e.toArray(new String[0])).collect(toList()).toArray(new String[0][0]);
+        return Arrays.asList(data).stream().collect(sortedGroupingBy(anagramCondition))
+                .values().stream()
+                .map(e -> e.toArray(new String[0]))
+                .collect(toList())
+                .toArray(new String[0][0]);
     }
 
     public static <T, K extends Comparable<K>> Collector<T, ?, LinkedHashMap<K, List<T>>>
