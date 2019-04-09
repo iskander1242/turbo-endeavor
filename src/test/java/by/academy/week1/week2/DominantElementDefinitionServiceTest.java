@@ -21,8 +21,10 @@ import static org.junit.Assert.assertEquals;
 public class DominantElementDefinitionServiceTest {
     @Test
     public void test() {
-        assertEquals(9, new DominantElementDefinitionService().getDominantElement(new Integer[]{10, 9, 9, 9, 10}));
-        assertEquals(3, new DominantElementDefinitionService().getDominantElement(new Integer[]{3, 2, 3}));
-        assertEquals(2, new DominantElementDefinitionService().getDominantElement(new Integer[]{2, 2, 1, 1, 1, 2, 2}));
+
+        DominantElementDefinitionService definitionService = new DominantElementDefinitionService();
+        assertEquals(9, definitionService.getDominantElement(new Integer[]{10, 9, 9, 9, 10}));
+        assertEquals(3, definitionService.getDominantElement(new Integer[]{3, 2, 3}));
+        assertEquals(2, definitionService.getDominantElement(new Integer[]{2, 2, 1, 1, 1, 2, 2}));
     }
 }

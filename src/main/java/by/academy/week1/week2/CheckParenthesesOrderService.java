@@ -20,6 +20,7 @@ import java.util.Stack;
  * @since 2019-03-31
  */
 public class CheckParenthesesOrderService {
+
     public boolean isBalanced(char[] unbalanced) {
         Stack<Character> stack = new Stack<>();
 
@@ -27,13 +28,15 @@ public class CheckParenthesesOrderService {
             if (character == '(' || character == '[' || character == '{') {
                 stack.push(character);
             } else {
-                if (stack.empty()) return false;
+                if (stack.empty()) {
+                    return false;
+                }
                 Character head = stack.pop();
-                    if ((head == '(' & character != ')')
-                            || (head == '[' & character != ']')
-                            || (head == '{' & character != '}')) {
-                        return false;
-                    }
+                if ((head == '(' & character != ')')
+                        || (head == '[' & character != ']')
+                        || (head == '{' & character != '}')) {
+                    return false;
+                }
             }
         }
         return stack.empty();

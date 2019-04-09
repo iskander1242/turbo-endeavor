@@ -42,10 +42,10 @@ import static java.util.stream.Collectors.toList;
  */
 public class AnagramService {
 
-    private static Function<String, String> anagramCondition = e -> {
-        char[] k = e.toCharArray();
-        Arrays.sort(k);
-        return String.valueOf(k);
+    private static Function<String, String> anagramCondition = word -> {
+        char[] chars = word.toCharArray();
+        Arrays.sort(chars);
+        return String.valueOf(chars);
     };
 
     public String[][] getAnagrams(String[] data) {
@@ -56,7 +56,7 @@ public class AnagramService {
                 .toArray(new String[0][0]);
     }
 
-    public static <T, K extends Comparable<K>> Collector<T, ?, LinkedHashMap<K, List<T>>>
+    private <T, K extends Comparable<K>> Collector<T, ?, LinkedHashMap<K, List<T>>>
     sortedGroupingBy(Function<T, K> function) {
         return Collectors.groupingBy(function,
                 LinkedHashMap::new, toList());

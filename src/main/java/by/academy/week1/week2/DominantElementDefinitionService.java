@@ -32,10 +32,14 @@ import static java.util.stream.Collectors.counting;
  */
 
 public class DominantElementDefinitionService {
-    public long getDominantElement(Integer[] existed) {
+
+    public Integer getDominantElement(Integer[] existed) {
         List<Integer> list = Arrays.asList(existed);
         Integer dominant = list.stream().collect(Collectors.groupingBy(Integer::intValue, counting()))
-                .entrySet().stream().filter(v -> v.getValue() > Math.floor(list.size() / 2)).findFirst().orElseThrow(NoSuchElementException::new).getKey();
+                .entrySet().stream()
+                .filter(v -> v.getValue() > Math.floor(list.size() / 2))
+                .findFirst().orElseThrow(NoSuchElementException::new)
+                .getKey();
         return dominant;
     }
 }

@@ -16,12 +16,14 @@ import static org.junit.Assert.assertTrue;
  * 5. {[]} – корректная
  */
 public class CheckParenthesesOrderTest {
+
     @Test
     public void test() {
-        assertTrue(new CheckParenthesesOrderService().isBalanced("()".toCharArray()));
-        assertTrue(new CheckParenthesesOrderService().isBalanced("(){}[]".toCharArray()));
-        assertFalse(new CheckParenthesesOrderService().isBalanced("(]".toCharArray()));
-        assertFalse(new CheckParenthesesOrderService().isBalanced("([)]".toCharArray()));
-        assertTrue(new CheckParenthesesOrderService().isBalanced("{[]}".toCharArray()));
+        CheckParenthesesOrderService orderService = new CheckParenthesesOrderService();
+        assertTrue(orderService.isBalanced("()".toCharArray()));
+        assertTrue(orderService.isBalanced("(){}[]".toCharArray()));
+        assertFalse(orderService.isBalanced("(]".toCharArray()));
+        assertFalse(orderService.isBalanced("([)]".toCharArray()));
+        assertTrue(orderService.isBalanced("{[]}".toCharArray()));
     }
 }
